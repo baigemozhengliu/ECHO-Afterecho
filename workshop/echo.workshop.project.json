@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "5105090",
+  "publishedFileId": "0",
+  "contentDirectory": "content",
+  "previewFile": "preview.png",
+  "visibility": "private",
+  "description": "Portable metadata playlists for ECHO, resolved on demand through a local Music Bridge.",
+  "changeNote": "Redesigned playlist management, source search and rebinding, atomic bulk editing, import examples and metadata repair.",
+  "tags": [
+    "Sandboxed Plugin"
+  ]
+}

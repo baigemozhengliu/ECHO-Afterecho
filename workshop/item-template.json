@@ -1,0 +1,20 @@
+{
+  "type": "echo-workshop-item",
+  "schemaVersion": 1,
+  "id": "echo.portable-library",
+  "title": "Afterecho",
+  "version": "0.2.0",
+  "content": {
+    "kind": "plugin-package",
+    "entry": "community.echo"
+  },
+  "compatibility": {
+    "minEchoVersion": "26.10.4",
+    "pluginApiVersion": 2
+  },
+  "files": [],
+  "license": {
+    "id": "PolyForm-Noncommercial-1.0.0",
+    "holder": "Afterecho contributors"
+  }
+}

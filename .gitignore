@@ -1,0 +1,15 @@
+dist/
+workshop/content/
+__pycache__/
+*.pyc
+.venv/
+.vendor/
+data/
+*.sqlite*
+*.log
+venv/
+
+SHA256SUMS*
+*checksums*
+VERIFICATION.json
+.ready

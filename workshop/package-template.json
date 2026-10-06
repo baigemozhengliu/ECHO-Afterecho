@@ -1,0 +1,72 @@
+{
+  "type": "echo-plugin-package",
+  "version": 1,
+  "exportedAt": "2026-10-03T06:17:45.911Z",
+  "manifest": {
+    "id": "echo.portable-library",
+    "name": "Afterecho",
+    "version": "0.2.0",
+    "apiVersion": 2,
+    "entry": "plugin.js",
+    "trustedEntry": "trusted.mjs",
+    "permissions": [
+      "system:full",
+      "sources:provide",
+      "sources:direct",
+      "fs:export",
+      "library:read",
+      "queue:control",
+      "queue:read",
+      "lyrics:provide",
+      "playback:read",
+      "playback:control"
+    ],
+    "contributes": {
+      "commands": [
+        {
+          "id": "check-bridge",
+          "title": "Check Music Bridge"
+        },
+        {
+          "id": "start-continuous",
+          "title": "Play Afterecho Continuously"
+        },
+        {
+          "id": "stop-continuous",
+          "title": "Stop Afterecho Continuous Play"
+        }
+      ],
+      "panels": [
+        {
+          "id": "library",
+          "title": "Afterecho",
+          "path": "panel.html",
+          "placement": "page",
+          "group": "library"
+        }
+      ],
+      "sourceProviders": [
+        {
+          "id": "portable-library",
+          "title": "Afterecho",
+          "description": "Portable metadata playlists resolved at playback time."
+        }
+      ],
+      "lyricsProviders": [
+        {
+          "id": "portable-lyrics",
+          "title": "Afterecho Lyrics",
+          "description": "Matched lyric candidates for played Afterecho tracks."
+        }
+      ],
+      "coverProviders": [
+        {
+          "id": "portable-covers",
+          "title": "Afterecho Covers",
+          "description": "Matched cover candidates for played Afterecho tracks."
+        }
+      ]
+    }
+  },
+  "files": []
+}
