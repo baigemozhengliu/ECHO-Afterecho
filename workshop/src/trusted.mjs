@@ -1,12 +1,15 @@
 import fs from 'node:fs/promises';
+import {existsSync} from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import {execFile,spawn} from 'node:child_process';
 import {promisify} from 'node:util';
 import {createHash} from 'node:crypto';
 const run=promisify(execFile);
-const VERSION='0.2.0', BASE='http://127.0.0.1:18765';
-const HOME=process.env.ECHO_PORTABLE_HOME||path.join(process.env.LOCALAPPDATA||path.join(os.homedir(),'AppData','Local'),'Afterecho');
+const VERSION='0.2.1', BASE='http://127.0.0.1:18765';
+const LOCAL=process.env.LOCALAPPDATA||path.join(os.homedir(),'AppData','Local');
+const CURRENT_HOME=path.join(LOCAL,'Afterecho'), LEGACY_HOME=path.join(LOCAL,'ECHO-Portable-Library');
+const HOME=process.env.ECHO_PORTABLE_HOME||(existsSync(path.join(CURRENT_HOME,'data','playlists.sqlite'))?CURRENT_HOME:existsSync(path.join(LEGACY_HOME,'data','playlists.sqlite'))?LEGACY_HOME:CURRENT_HOME);
 const DATA=path.join(HOME,'data');
 const BUNDLE_SHA='__BUNDLE_SHA__';
 let context,starting=null,lastError='',started=false;
@@ -26,7 +29,7 @@ async function launch(){
   const root=path.join(HOME,'runtime',VERSION+'-'+BUNDLE_SHA.slice(0,12));
   const extract="import sys,zipfile,pathlib; p=pathlib.Path(sys.argv[2]).resolve();p.mkdir(parents=True,exist_ok=True);z=zipfile.ZipFile(sys.argv[1]);assert all(p in (p/n).resolve().parents for n in z.namelist());z.extractall(p)";
   await run(exe,['-c',extract,bundle,root],{windowsHide:true,timeout:20000});
-  const child=spawn(exe,[path.join(root,'setup_runtime.py')],{cwd:root,env:{...process.env,ECHO_PORTABLE_HOME:HOME},windowsHide:true,detached:true,stdio:'ignore'});
+  const child=spawn(exe,[path.join(root,'setup_runtime.py')],{cwd:root,env:{...process.env,ECHO_PORTABLE_HOME:HOME,ECHO_HOST_PID:String(process.pid)},windowsHide:true,detached:true,stdio:'ignore'});
   await new Promise((resolve,reject)=>{child.once('spawn',resolve);child.once('error',reject)});child.unref();started=true;lastError='';
  })().catch(e=>{lastError=e.message;throw e}).finally(()=>starting=null);
  return starting;

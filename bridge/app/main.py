@@ -34,7 +34,7 @@ def make_app(data_dir: Path | None = None) -> FastAPI:
     sources = [value for value in os.environ.get("ECHO_MUSICDL_SOURCES", "").split(",") if value]
     musicdl = MusicDLSearch(sources, data_dir / "musicdl-work")
     musicdl.warmup()
-    app = FastAPI(title="Afterecho Bridge", version="0.2.0")
+    app = FastAPI(title="Afterecho Bridge", version="0.2.1")
     library_services: dict[str, Any] = {}
     app.include_router(make_subsonic_router(store, musicdl, data_dir, library_services))
     resolver_pool = ThreadPoolExecutor(max_workers=4, thread_name_prefix="musicdl-resolve")

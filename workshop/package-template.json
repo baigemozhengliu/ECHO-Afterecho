@@ -5,7 +5,7 @@
   "manifest": {
     "id": "echo.portable-library",
     "name": "Afterecho",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "apiVersion": 2,
     "entry": "plugin.js",
     "trustedEntry": "trusted.mjs",

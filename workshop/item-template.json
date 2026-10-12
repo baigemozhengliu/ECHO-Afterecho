@@ -3,7 +3,7 @@
   "schemaVersion": 1,
   "id": "echo.portable-library",
   "title": "Afterecho",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "content": {
     "kind": "plugin-package",
     "entry": "community.echo"

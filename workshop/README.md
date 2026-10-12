@@ -1,4 +1,4 @@
-# Afterecho 0.2.0
+# Afterecho 0.2.1
 
 ECHO 虚拟音乐库插件。导入歌单，搜索音源，在 ECHO 播放。
 
@@ -6,11 +6,17 @@ ECHO 虚拟音乐库插件。导入歌单，搜索音源，在 ECHO 播放。
 
 1. 安装 [ECHO](https://github.com/Moekotori/ECHO)，已验证版本：Steam 26.10.4。
 2. 安装 [Python 3.12，Windows 64 位](https://www.python.org/downloads/release/python-31210/)。勾选 **Add python.exe to PATH**，重启 ECHO。
-3. 下载 [Afterecho-0.2.0.zip](https://github.com/baigemozhengliu/ECHO-Afterecho/raw/refs/heads/main/downloads/Afterecho-0.2.0.zip)。ECHO → 创意工坊 → 导入本地包。不要导入 GitHub 的 Source code ZIP。
+3. 下载 [Afterecho-0.2.1.zip](https://github.com/baigemozhengliu/ECHO-Afterecho/raw/refs/heads/main/downloads/Afterecho-0.2.1.zip)。ECHO → 创意工坊 → 导入本地包。不要导入 GitHub 的 Source code ZIP。
 4. 启用插件，允许其运行本机服务。首次启动联网安装依赖，等待“服务就绪”。
 5. 插件 → 连接 ECHO。按参数新建 **Subsonic** 连接，执行同步。
 
 初始为一个空白歌单。包内没有音乐、用户歌单、账号或缓存。
+
+## 0.2.1 更新
+
+- ECHO 退出时关闭后台服务，卡住的子进程最多 10 秒后清理。
+- 兼容旧版数据目录 `ECHO-Portable-Library`。
+- 从 0.2.0 升级：先退出 ECHO；若 Steam 卡在“正在停止”，先结束旧插件的 `setup_runtime.py` 进程树，再重新启动。仅导入新版不会替换已运行的旧后台。
 
 ## 使用
 
@@ -83,4 +89,7 @@ FastAPI、Uvicorn、OpenCC 允许按各自条款修改和分发，需保留相�
 py -3.12 scripts/build.py
 ```
 
-产物：`dist/Afterecho-0.2.0.zip`。将此文件上传 GitHub Release。源码提交仓库，运行目录和个人数据不提交。
+产物：`dist/Afterecho-0.2.1.zip`。源码提交仓库，运行目录和个人数据不提交。
+
+
+声明：本项目仅为作者在存储介质离线的情况下临时测试歌单歌曲设计，并非专用的流媒体解析源插件，不应用于在线听歌用途
